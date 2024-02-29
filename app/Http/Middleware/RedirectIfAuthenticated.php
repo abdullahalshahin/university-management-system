@@ -8,20 +8,36 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class RedirectIfAuthenticated
-{
+class RedirectIfAuthenticated {
     /**
      * Handle an incoming request.
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next, string ...$guards): Response
-    {
+    public function handle(Request $request, Closure $next, string ...$guards): Response {
+        // $guards = empty($guards) ? [null] : $guards;
+
+        // foreach ($guards as $guard) {
+        //     if (Auth::guard($guard)->check()) {
+        //         return redirect(RouteServiceProvider::ADMIN_HOME);
+        //     }
+        // }
+
+        // return $next($request);
+
         $guards = empty($guards) ? [null] : $guards;
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+                if ($guard === 'student' && $request->is('student-panel/*')) {
+                    return redirect(RouteServiceProvider::STUDENT_HOME);
+                }
+                elseif ($request->is('admin-panel/*')) {
+                    return redirect(RouteServiceProvider::ADMIN_HOME);
+                }
+                else {
+                    return $next($request);
+                }
             }
         }
 
