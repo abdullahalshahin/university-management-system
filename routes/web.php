@@ -25,12 +25,16 @@ Route::middleware('auth')->group(function() {
     Route::prefix('admin-panel/dashboard')->group(function() {
         Route::get('/', [AdminControllers\DashboardController::class, 'index']);
 
-        Route::resource('users', AdminControllers\UserController::class);
+        Route::resource('branches', AdminControllers\BranchController::class);
+        Route::resource('departments', AdminControllers\DepartmentController::class);
         Route::resource('roles', AdminControllers\RoleController::class);
-
+        Route::resource('students', AdminControllers\StudentController::class);
+        Route::resource('users', AdminControllers\UserController::class);
+        
         Route::get('my-account', [AdminControllers\ProfileController::class, 'my_account']);
         Route::get('my-account-edit', [AdminControllers\ProfileController::class, 'my_account_edit']);
         Route::put('my-account-update', [AdminControllers\ProfileController::class, 'my_account_update']);
+        Route::post('users-change-status', [AdminControllers\UserController::class, 'users_change_status']);
 
         Route::get('system-settings', [AdminControllers\SystemSettingsController::class, 'index']);
         Route::get('application-cache-clear', [AdminControllers\SystemSettingsController::class, 'application_cache_clear']);

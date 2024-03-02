@@ -36,8 +36,13 @@ class ProfileController extends Controller
     public function my_account_update(Request $request) {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
+            'date_of_birth' => ['required', 'string', 'max:255'],
+            'gender' => ['required', 'string', 'max:255'],
+            'degree' => ['required', 'string', 'max:255'],
+            'position' => ['required', 'string', 'max:255'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'address' => ['required', 'string'],
+            'profile_image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,gif', 'max:10240'],
         ]);
 
         $user = Auth::user();
@@ -57,11 +62,13 @@ class ProfileController extends Controller
         }
 
         $user_data = User::find($user->id);
-        
+
         $user_data->update([
             'name' => $request->name,
-            // 'mobile_number' => $request->mobile_number,
-            // 'email' => $request->email,
+            'date_of_birth' => $request->date_of_birth,
+            'gender' => $request->gender,
+            'degree' => $request->degree,
+            'position' => $request->position,
             'password' => Hash::make($request->password),
             'security' => $request->password,
             'address' => $request->address,

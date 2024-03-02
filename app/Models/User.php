@@ -20,10 +20,8 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'security',
+        'name', 'date_of_birth', 'gender', 'degree', 'position', 'mobile_number', 'email', 'password', 'security',
+        'department_id', 'address', 'profile_image', 'status'
     ];
 
     /**
@@ -45,4 +43,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function department() {
+        return $this->belongsTo(Department::class, 'department_id', 'id');
+    }
 }

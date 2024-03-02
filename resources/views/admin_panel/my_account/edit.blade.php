@@ -1,5 +1,9 @@
 <x-app-layout>
-    <x-slot name="page_title">{{ $page_title ?? 'My Account Edit' }}</x-slot>
+    <x-slot name="page_title">{{ $page_title ?? 'My Account Edit |' }}</x-slot>
+
+    <x-slot name="style">
+        <link href="{{ asset('assets/vendor/flatpickr/flatpickr.min.css') }}" rel="stylesheet" type="text/css" />
+    </x-slot>
 
     <div class="container-fluid">
         <div class="row">
@@ -40,6 +44,10 @@
                             <img src="{{ asset('assets/images/avator.png') }}" class="rounded-circle avatar-lg img-thumbnail" alt="profile_image" />
                         @endif
 
+                        @if ($user->department)
+                            <p><strong>Department: </strong> {{ $user->department->name ?? "" }}</p>
+                        @endif
+
                         <div class="row mb-2">
                             <div class="text-start mt-3">
                                 <form action="{{ url('admin-panel/dashboard/my-account-update') }}" method="POST" enctype="multipart/form-data">
@@ -47,9 +55,36 @@
                                     @method('PUT')
 
                                     <div class="row g-2">
-                                        <div class="mb-2 col-md-12">
-                                            <label for="name"> Name <span class="text-danger">*</span> </label>
+                                        <div class="mb-2 col-md-6">
+                                            <label for="name"> Name <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $user->name ?? "") }}" placeholder="" required>
+                                        </div>
+
+                                        <div class="mb-2 col-md-3">
+                                            <label for="gender"> Gender <span class="text-danger">*</span></label>
+                                            <select class="form-select" id="gender" name="gender" required>
+                                                <option value="" selected disabled> Choose Gender </option>
+                                                <option value="Male" {{ (old('gender') ?? ($user->gender ?? "")) == "Male" ? 'selected' : "" }}> Male </option>
+                                                <option value="Female" {{ (old('gender') ?? ($user->gender ?? "")) == "Female" ? 'selected' : "" }}> Female </option>
+                                                <option value="Others" {{ (old('gender') ?? ($user->gender ?? "")) == "Others" ? 'selected' : "" }}> Others </option>
+                                            </select>
+                                        </div>
+                                    
+                                        <div class="mb-2 col-md-3">
+                                            <label id=""> Date Of Birth <span class="text-danger">*</span></label>
+                                            <input type="text" id="basic-datepicker" name="date_of_birth" value="{{ old('date_of_birth', $user->date_of_birth ?? "") }}" class="form-control" placeholder="" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="row g-2">
+                                        <div class="mb-2 col-md-6">
+                                            <label for="degree"> Degree <span class="text-danger">*</span> </label>
+                                            <input type="text" class="form-control" id="degree" name="degree" value="{{ old('degree', $user->degree ?? "") }}" placeholder="" required>
+                                        </div>
+
+                                        <div class="mb-2 col-md-6">
+                                            <label for="position"> Position <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="position" name="position" value="{{ old('position', $user->position ?? "") }}" placeholder="" required>
                                         </div>
                                     </div>
                                     
@@ -67,7 +102,7 @@
                                     
                                     <div class="row g-2">
                                         <div class="mb-2 col-md-6">
-                                            <label for="password"> Password <span class="text-danger">*</span> </label>
+                                            <label for="password"> Password <span class="text-danger">*</span></label>
                                             <div class="input-group input-group-merge">
                                                 <input type="password" id="password" name="password" value="{{ old('password', $user->security ?? "") }}" class="form-control" placeholder="" required>
                                                 <div class="input-group-text" data-password="false">
@@ -77,7 +112,7 @@
                                         </div>
                                     
                                         <div class="mb-2 col-md-6">
-                                            <label for="password_confirmation"> Confirm Password <span class="text-danger">*</span> </label>
+                                            <label for="password_confirmation"> Confirm Password <span class="text-danger">*</span></label>
                                             <div class="input-group input-group-merge">
                                                 <input type="password" id="password_confirmation" name="password_confirmation" value="{{ old('password_confirmation', $user->security ?? "") }}" class="form-control" placeholder="" required>
                                                 <div class="input-group-text" data-password="false">
@@ -89,7 +124,7 @@
                                     
                                     <div class="row g-2">
                                         <div class="mb-2 col-md-12">
-                                            <label for="address"> Address <span class="text-danger">*</span> </label>
+                                            <label for="address"> Address <span class="text-danger">*</span></label>
                                             <textarea class="form-control" id="address" name="address" rows="5" required>{{ old('address', $user->address ?? "") }}</textarea>
                                         </div>
                                     </div>
@@ -113,4 +148,11 @@
             </div>
         </div>
     </div>
+
+    <!-- script -->
+    <x-slot name="script">
+        <script src="{{ asset('assets/vendor/bootstrap-timepicker/js/bootstrap-timepicker.min.js') }}"></script>
+        <script src="{{ asset('assets/vendor/flatpickr/flatpickr.min.js') }}"></script>
+        <script src="{{ asset('assets/js/pages/demo.timepicker.js') }}"></script>
+    </x-slot>
 </x-app-layout>
