@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>Log In | {{ config('app.name', 'Laravel') }}</title>
+        <title>Registration | {{ config('app.name', 'Laravel') }}</title>
 
         <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
 
@@ -36,7 +36,8 @@
                             <div class="card-header py-2 text-center bg-dark">
                                 <a href="{{ url('/') }}">
                                     <span>
-                                        <img src="{{ asset('assets/images/logo.png') }}" alt="logo" height="60">
+                                        {{-- <img src="{{ asset('assets/images/logo.png') }}" alt="logo" height="60"> --}}
+                                        <h2>{{ config('app.name') }}</h2>
                                     </span>
                                 </a>
                             </div>

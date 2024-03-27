@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function() {
         Route::post('users-change-status', [AdminControllers\UserController::class, 'users_change_status']);
 
         Route::get('system-settings', [AdminControllers\SystemSettingsController::class, 'index']);
+        Route::post('email-gateway-update', [AdminControllers\SystemSettingsController::class, 'email_gateway_update']);
         Route::get('application-cache-clear', [AdminControllers\SystemSettingsController::class, 'application_cache_clear']);
     });
 });
@@ -47,6 +48,8 @@ Route::prefix('student-panel')->group(function() {
     Route::post('/login', [Auth\StudentAuthenticationController::class, 'login_store']);
     Route::get('/registration', [Auth\StudentAuthenticationController::class, 'registration']);
     Route::post('/registration', [Auth\StudentAuthenticationController::class, 'registration_store']);
+    Route::get('/registration-verification', [Auth\StudentAuthenticationController::class, 'registration_verification']);
+    Route::post('/registration-verification', [Auth\StudentAuthenticationController::class, 'registration_verification_store']);
     Route::get('/forgot-password', [Auth\StudentAuthenticationController::class, 'forgot_password']);
     Route::post('/forgot-password', [Auth\StudentAuthenticationController::class, 'forgot_password_store']);
 
