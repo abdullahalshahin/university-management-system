@@ -81,9 +81,9 @@ class StudentAuthenticationController extends Controller
             'address' => ['required', 'string', 'max:255'],
         ]);
 
-        $old_student = Student::where('email', $request->email)->first();
+        $student = Student::where('email', $request->email)->first();
 
-        if (!$old_student) {
+        if (!$student) {
             $otp = StudentVerification::save_and_get_otp($request->email);
 
             $data = [
@@ -154,10 +154,8 @@ class StudentAuthenticationController extends Controller
             'address' => $request->student['address'],
             'status' => "inactive"
         ]);
-    
-        Auth::guard('student')->login($student);
 
-        return redirect('/student-panel/dashboard');
+        return redirect('/student-panel/login');
     }
 
     /**
