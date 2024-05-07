@@ -247,7 +247,8 @@ class UserController extends Controller
                 'status' => true,
                 'message' => "Updated Successfully"
             ], 200);
-        } else {
+        } 
+        else {
             return response([
                 'status' => true,
                 'message' => "Data Not Found !!!"
