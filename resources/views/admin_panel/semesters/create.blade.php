@@ -1,5 +1,5 @@
 <x-app-layout>
-    <x-slot name="page_title">{{ $page_title ?? 'Department Edit' }}</x-slot>
+    <x-slot name="page_title">{{ $page_title ?? 'Semester Create |' }}</x-slot>
 
     <div class="container-fluid">
         <div class="row">
@@ -9,12 +9,12 @@
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="{{ url('/') }}"> {{ config('app.name', 'Laravel') }} </a></li>
                             <li class="breadcrumb-item"><a href="{{ url('admin-panel/dashboard') }}"> Dashboard </a></li>
-                            <li class="breadcrumb-item"><a href="{{ url('admin-panel/dashboard/departments') }}"> Departments </a></li>
-                            <li class="breadcrumb-item active"> Edit </li>
+                            <li class="breadcrumb-item"><a href="{{ url('admin-panel/dashboard/semesters') }}"> Semesters </a></li>
+                            <li class="breadcrumb-item active"> Create </li>
                         </ol>
                     </div>
 
-                    <h4 class="page-title"> Department Edit </h4>
+                    <h4 class="page-title"> Semester Create </h4>
                 </div>
             </div>
         </div>
@@ -33,22 +33,19 @@
 
         <div class="row">
             <div class="col-12">
-                <div class="card text-center">
+                <div class="card">
                     <div class="card-body">
                         <div class="row mb-2">
-                            <div class="text-start mt-3">
-                                <form action="{{ url('admin-panel/dashboard/departments', $department->id) }}" method="POST" enctype="multipart/form-data">
-                                    @csrf
-                                    @method('PUT')
-            
-                                    @include('admin_panel.departments.form')
-                                    
-                                    <div class="float-end">
-                                        <a href="{{ url('admin-panel/dashboard/departments') }}" class="btn btn-primary button-last"> Go Back </a>
-                                        <button type="submit" class="btn btn-success button-last"> Save </button>
-                                    </div>
-                                </form>
-                            </div>
+                            <form action="{{ url('admin-panel/dashboard/semesters') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+        
+                                @include('admin_panel.semesters.form')
+                                
+                                <div class="float-end">
+                                    <a href="{{ url('admin-panel/dashboard/semesters') }}" class="btn btn-primary button-last"> Go Back </a>
+                                    <button type="submit" class="btn btn-success button-last"> Save </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

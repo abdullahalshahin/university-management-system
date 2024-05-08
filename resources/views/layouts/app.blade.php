@@ -199,6 +199,20 @@
                         </li>
 
                         <li class="side-nav-item">
+                            <a href="{{ url('admin-panel/dashboard/courses') }}" class="side-nav-link">
+                                <i class="uil-clipboard-alt"></i>
+                                <span> Courses </span>
+                            </a>
+                        </li>
+
+                        <li class="side-nav-item">
+                            <a href="{{ url('admin-panel/dashboard/semesters') }}" class="side-nav-link">
+                                <i class="uil-clipboard-alt"></i>
+                                <span> Semester </span>
+                            </a>
+                        </li>
+
+                        <li class="side-nav-item">
                             <a href="{{ url('admin-panel/dashboard/students') }}" class="side-nav-link">
                                 <i class="uil-clipboard-alt"></i>
                                 <span> Student </span>

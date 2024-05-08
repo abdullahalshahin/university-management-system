@@ -26,10 +26,17 @@ Route::middleware('auth')->group(function() {
         Route::get('/', [AdminControllers\DashboardController::class, 'index']);
 
         Route::resource('branches', AdminControllers\BranchController::class);
+        Route::resource('courses', AdminControllers\CourseController::class);
         Route::resource('departments', AdminControllers\DepartmentController::class);
+        Route::resource('semesters', AdminControllers\SemesterController::class);
         Route::resource('roles', AdminControllers\RoleController::class);
         Route::resource('students', AdminControllers\StudentController::class);
         Route::resource('users', AdminControllers\UserController::class);
+
+        Route::post('semester-course-assign/{semester}', [AdminControllers\SemesterController::class, 'semester_cours_assign']);
+        Route::get('assigned-semester-course/{semester_course}/edit', [AdminControllers\SemesterController::class, 'assigned_cours_assign']);
+        Route::put('assigned-semester-course/{semester_course}/update', [AdminControllers\SemesterController::class, 'assigned_cours_assign_update']);
+        Route::delete('unassign-semester-course/{semester_course}', [AdminControllers\SemesterController::class, 'unassign_semester_course']);
         
         Route::get('my-account', [AdminControllers\ProfileController::class, 'my_account']);
         Route::get('my-account-edit', [AdminControllers\ProfileController::class, 'my_account_edit']);
