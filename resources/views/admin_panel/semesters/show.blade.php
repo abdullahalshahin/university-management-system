@@ -94,7 +94,7 @@
                                                     @csrf
                                                     @method('DELETE')
 
-                                                    <button type="button" class="btn action-icon" data-bs-toggle="modal" id="semester_courses_edit_btn" data-id="{{ $semester_course->id }}" data-bs-target="#semester_course_edit_modal"><i class="mdi mdi-eye"></i></button>
+                                                    <button type="button" class="btn action-icon" data-bs-toggle="modal" id="semester_courses_edit_btn" data-id="{{ $semester_course->id }}" data-bs-target="#semester_course_edit_modal"><i class="mdi mdi-square-edit-outline"></i></button>
 
                                                     <input name="_method" type="hidden" value="DELETE">
                                                     <button type="submit" class="btn action-icon" data-toggle="tooltip" title='Delete'><i class="mdi mdi-delete"></i></button>
@@ -225,23 +225,16 @@
     <x-slot name="script">
         <script type="text/javascript">
             $('body').on('click', '#semester_courses_edit_btn', function () {
-                var id = $(this).data('id');
+                var semester_course_id = $(this).data('id');
 
-                console.log(id);
-
-                // axios.get('/admin-panel/dashboard/show-comment', {
-                //     params: {
-                //         reviewer_feedback_id: id,
-                //     }
-                // })
-                // .then(function (response) {
-                //     var reviewer_feedback = response.data;
-
-                //     document.getElementById("comment").innerHTML = reviewer_feedback.comment;
-                // })
-                // .catch(function (error) {
-                //     console.log(error);
-                // })
+                $.ajax({
+                    url: `{{ url('admin-panel/dashboard/assigned-semester-course/${semester_course_id}/edit') }}`,
+                    type: "GET",
+                    dataType: 'json',
+                    success: function (result) {
+                        
+                    }
+                });
             });
         </script>
     </x-slot>
