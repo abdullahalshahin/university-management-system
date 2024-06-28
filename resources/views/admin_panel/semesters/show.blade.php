@@ -25,6 +25,18 @@
             </div>
         @endif
 
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <strong>Whoops!</strong> There were some problems with your input. <br><br>
+
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <div class="row">
             <div class="col-12">
                 <div class="card text-center">
@@ -175,13 +187,13 @@
                 </div>
 
                 <div class="modal-body">
-                    <form action="{{ url('admin-panel/dashboard/semester-course-assign', $semester->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="" method="POST" enctype="multipart/form-data" id="assigned_semester_course_edit_form">
                         @csrf
                         
                         <div class="row g-2">
                             <div class="mb-3 col-md-6">
                                 <label for="edit_course_id"> Course <span class="text-danger">*</span></label>
-                                <select class="form-control form-control-sm" name="course_id" id="edit_course_id" required>
+                                <select class="form-control form-control-sm" name="edit_course_id" id="edit_course_id" required>
                                     <option value="" selected disabled> Choose Course </option>
                                     @foreach ($courses as $course)
                                         <option value="{{ $course->id }}">
@@ -193,7 +205,7 @@
 
                             <div class="mb-3 col-md-6">
                                 <label for="edit_teacher_id"> Teacher <span class="text-danger">*</span></label>
-                                <select class="form-control form-control-sm" name="teacher_id" id="edit_teacher_id" required>
+                                <select class="form-control form-control-sm" name="edit_teacher_id" id="edit_teacher_id" required>
                                     <option value="" selected disabled> Choose Teacher </option>
                                     @foreach ($teachers as $teacher)
                                         <option value="{{ $teacher->id }}">
@@ -207,7 +219,7 @@
                         <div class="row g-2">
                             <div class="mb-2 col-md-12">
                                 <label for="edit_description"> Description </label>
-                                <textarea class="form-control" id="edit_description" name="description" rows="5">{{ old('edit_description') }}</textarea>
+                                <textarea class="form-control" id="edit_description" name="edit_description" rows="5">{{ old('edit_description') }}</textarea>
                             </div>
                         </div>
 
@@ -227,12 +239,18 @@
             $('body').on('click', '#semester_courses_edit_btn', function () {
                 var semester_course_id = $(this).data('id');
 
+                var assigned_semester_course_edit_form_ction = `{{ url('admin-panel/dashboard/assigned-semester-course') }}/${semester_course_id}/update`;
+                $('#assigned_semester_course_edit_form').attr('action', assigned_semester_course_edit_form_ction);
+
                 $.ajax({
                     url: `{{ url('admin-panel/dashboard/assigned-semester-course/${semester_course_id}/edit') }}`,
                     type: "GET",
                     dataType: 'json',
                     success: function (result) {
-                        
+                        console.log(result);
+                        $('#edit_course_id').val(result.semester_course.course_id || '');
+                        $('#edit_teacher_id').val(result.semester_course.teacher_id || '');
+                        $('#edit_description').val(result.semester_course.description || '');
                     }
                 });
             });

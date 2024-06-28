@@ -28,6 +28,7 @@ class SemesterController extends Controller
             ->get();
 
         $teachers = User::query()
+            ->where('id', '!=', 1)
             ->orderBy('name', "asc")
             ->get();
 
@@ -145,18 +146,18 @@ class SemesterController extends Controller
 
     public function assigned_cours_assign_update(Request $request, SemesterCourse $semester_course) {
         $request->validate([
-            'course_id' => ['required', 'numeric'],
-            'teacher_id' => ['required', 'numeric'],
-            'description' => ['nullable', 'string']
+            'edit_course_id' => ['required', 'numeric'],
+            'edit_teacher_id' => ['required', 'numeric'],
+            'edit_description' => ['nullable', 'string']
         ]);
 
         $semester_course->update([
-            'course_id' => $request->course_id,
-            'teacher_id' => $request->teacher_id,
-            'description' => $request->description
+            'course_id' => $request->edit_course_id,
+            'teacher_id' => $request->edit_teacher_id,
+            'description' => $request->edit_description
         ]);
 
-        return redirect()->to('admin-panel/dashboard/semesters/'. $semester_course->semester->id .'/')
+        return back()
             ->with('success', 'Updated Successfully.');
     }
 

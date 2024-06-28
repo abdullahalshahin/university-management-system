@@ -35,7 +35,7 @@ Route::middleware('auth')->group(function() {
 
         Route::post('semester-course-assign/{semester}', [AdminControllers\SemesterController::class, 'semester_cours_assign']);
         Route::get('assigned-semester-course/{semester_course}/edit', [AdminControllers\SemesterController::class, 'assigned_cours_assign']);
-        Route::put('assigned-semester-course/{semester_course}/update', [AdminControllers\SemesterController::class, 'assigned_cours_assign_update']);
+        Route::post('assigned-semester-course/{semester_course}/update', [AdminControllers\SemesterController::class, 'assigned_cours_assign_update']);
         Route::delete('unassign-semester-course/{semester_course}', [AdminControllers\SemesterController::class, 'unassign_semester_course']);
         
         Route::get('my-account', [AdminControllers\ProfileController::class, 'my_account']);
