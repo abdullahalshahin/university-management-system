@@ -9,7 +9,7 @@ return new class extends Migration {
      * Run the migrations.
      */
     public function up(): void {
-        Schema::create('semester_course_participans', function (Blueprint $table) {
+        Schema::create('semester_course_participants', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('semester_course_id')->index();
             $table->foreign('semester_course_id')->references('id')->on('semester_courses');
@@ -25,6 +25,6 @@ return new class extends Migration {
      * Reverse the migrations.
      */
     public function down(): void {
-        Schema::dropIfExists('semester_course_participans');
+        Schema::dropIfExists('semester_course_participants');
     }
 };

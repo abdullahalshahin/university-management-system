@@ -87,6 +87,8 @@
                                                     <input name="_method" type="hidden" value="DELETE">
                                                     <button type="submit" class="btn action-icon show_confirm" data-toggle="tooltip" title='Delete'><i class="mdi mdi-delete"></i></button>
                                                 </form>
+
+                                                <a href="{{ url('admin-panel/dashboard/semesters') }}" class="btn btn-secondary">Students ({{ ($semester->students) ? $semester->students->count() : "0" }})</a>
                                             </td>
                                         </tr>
                                     @endforeach

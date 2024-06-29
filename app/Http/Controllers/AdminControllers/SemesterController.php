@@ -16,6 +16,9 @@ class SemesterController extends Controller
      */
     public function index() {
         $semesters = Semester::query()
+            ->with([
+                'students'
+            ])
             ->latest()
             ->get();
 

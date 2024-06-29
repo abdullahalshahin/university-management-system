@@ -11,6 +11,8 @@ return new class extends Migration {
     public function up(): void {
         Schema::create('semesters', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('department_id')->index();
+            $table->foreign('department_id')->references('id')->on('departments');
             $table->string('name');
             $table->date('open_date');
             $table->date('closed_date');
