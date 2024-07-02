@@ -44,6 +44,8 @@
                         <div class="row mb-2">
                             <div class="text-start mt-3">
                                 <p class="text-muted mb-2 font-13"><strong>Name :</strong> <span class="ms-2"> {{ $semester->name ?? "" }} </span></p>
+                                
+                                <p class="text-muted mb-2 font-13"><strong>Department :</strong> <span class="ms-2"> {{ $semester->department->name ?? "" }} </span></p>
 
                                 <p class="text-muted mb-2 font-13"><strong>Open Date :</strong> <span class="ms-2"> {{ $semester->open_date ?? "" }} </span></p>
 

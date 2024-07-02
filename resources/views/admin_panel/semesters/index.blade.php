@@ -44,6 +44,7 @@
                                 <thead>
                                     <tr>
                                         <th> SL </th>
+                                        <th> Department </th>
                                         <th> Name </th>
                                         <th> Open Date </th>
                                         <th> Closed Date </th>
@@ -58,6 +59,8 @@
                                         <tr>
                                             <td> {{ ++$key }} </td>
                                             
+                                            <td> {{ $semester->department->name ?? "" }} </td>
+
                                             <td> {{ $semester->name ?? "" }} </td>
 
                                             <td> {{ $semester->open_date ?? "" }} </td>
@@ -88,7 +91,7 @@
                                                     <button type="submit" class="btn action-icon show_confirm" data-toggle="tooltip" title='Delete'><i class="mdi mdi-delete"></i></button>
                                                 </form>
 
-                                                <a href="{{ url('admin-panel/dashboard/semesters') }}" class="btn btn-secondary">Students ({{ ($semester->students) ? $semester->students->count() : "0" }})</a>
+                                                <a href="{{ url('admin-panel/dashboard/semesters/' . $semester->id . '/participants') }}" class="btn btn-secondary">Students ({{ ($semester->students) ? $semester->students->count() : "0" }})</a>
                                             </td>
                                         </tr>
                                     @endforeach

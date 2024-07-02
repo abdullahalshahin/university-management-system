@@ -4,6 +4,7 @@ namespace App\Http\Controllers\AdminControllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Course;
+use App\Models\Department;
 use App\Models\Semester;
 use App\Models\SemesterCourse;
 use App\Models\User;
@@ -35,10 +36,16 @@ class SemesterController extends Controller
             ->orderBy('name', "asc")
             ->get();
 
+        $departments = Department::query()
+            ->where('status', "active")
+            ->orderBy('name', "asc")
+            ->get();
+
         return [
             'semester' => $semester,
             'courses' => $courses,
-            'teachers' => $teachers
+            'teachers' => $teachers,
+            'departments' => $departments
         ];
     }
 
@@ -54,6 +61,7 @@ class SemesterController extends Controller
      */
     public function store(Request $request) {
         $request->validate([
+            'department_id' => ['required', 'numeric'],
             'name' => ['required', 'string', 'max:255'],
             'open_date' => ['required', 'string', 'max:255'],
             'closed_date' => ['required', 'string', 'max:255'],
@@ -62,6 +70,7 @@ class SemesterController extends Controller
         ]);
 
         Semester::create([
+            'department_id' => $request->department_id,
             'name' => $request->name,
             'open_date' => $request->open_date,
             'closed_date' => $request->closed_date,
@@ -92,6 +101,7 @@ class SemesterController extends Controller
      */
     public function update(Request $request, Semester $semester) {
         $request->validate([
+            'department_id' => ['required', 'numeric'],
             'name' => ['required', 'string', 'max:255'],
             'open_date' => ['required', 'string', 'max:255'],
             'closed_date' => ['required', 'string', 'max:255'],
@@ -100,6 +110,7 @@ class SemesterController extends Controller
         ]);
 
         $semester->update([
+            'department_id' => $request->department_id,
             'name' => $request->name,
             'open_date' => $request->open_date,
             'closed_date' => $request->closed_date,
