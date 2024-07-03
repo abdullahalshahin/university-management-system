@@ -18,7 +18,7 @@ class SemesterController extends Controller
     public function index() {
         $semesters = Semester::query()
             ->with([
-                'students'
+                'participated_students'
             ])
             ->latest()
             ->get();

@@ -1,5 +1,5 @@
 <x-app-layout>
-    <x-slot name="page_title">{{ $page_title ?? 'Semesters |' }}</x-slot>
+    <x-slot name="page_title">{{ $page_title ?? 'Semester Participants |' }}</x-slot>
 
     <x-slot name="style">
         <link href="{{ asset('assets/vendor/datatables.net-bs5/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet" type="text/css" />
@@ -14,11 +14,12 @@
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="{{ url('/') }}"> {{ config('app.name', 'Laravel') }} </a></li>
                             <li class="breadcrumb-item"><a href="{{ url('admin-panel/dashboard') }}"> Dashboard </a></li>
-                            <li class="breadcrumb-item active"> Semesters </li>
+                            <li class="breadcrumb-item"><a href="{{ url('admin-panel/dashboard/semesters') }}"> Semesters </a></li>
+                            <li class="breadcrumb-item active"> Semester Participants </li>
                         </ol>
                     </div>
 
-                    <h4 class="page-title"> Semester List </h4>
+                    <h4 class="page-title"> Semester Participants List </h4>
                 </div>
             </div>
         </div>
@@ -35,7 +36,7 @@
                     <div class="card-body">
                         <div class="row mb-2">
                             <div class="col-sm-5">
-                                <a href="{{ url('admin-panel/dashboard/semesters/create') }}" class="btn btn-danger mb-2"><i class="mdi mdi-plus-circle me-2"></i> Add Semester </a>
+                                <a href="{{ url('admin-panel/dashboard/semesters/' . $semester->id . '/participants/create') }}" class="btn btn-danger mb-2"><i class="mdi mdi-plus-circle me-2"></i> Add Participant </a>
                             </div>
                         </div>
 
@@ -55,7 +56,7 @@
                                 </thead>
 
                                 <tbody>
-                                    @foreach ($semesters as $key => $semester)
+                                    @foreach ($participated_students as $key => $semester)
                                         <tr>
                                             <td> {{ ++$key }} </td>
                                             
@@ -91,7 +92,7 @@
                                                     <button type="submit" class="btn action-icon show_confirm" data-toggle="tooltip" title='Delete'><i class="mdi mdi-delete"></i></button>
                                                 </form>
 
-                                                <a href="{{ url('admin-panel/dashboard/semesters/' . $semester->id . '/participants') }}" class="btn btn-secondary">Students ({{ ($semester->participated_students) ? $semester->participated_students->count() : "0" }})</a>
+                                                <a href="{{ url('admin-panel/dashboard/semesters/' . $semester->id . '/participants') }}" class="btn btn-secondary">Students ({{ ($semester->students) ? $semester->students->count() : "0" }})</a>
                                             </td>
                                         </tr>
                                     @endforeach

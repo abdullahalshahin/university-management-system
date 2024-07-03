@@ -38,7 +38,13 @@ Route::middleware('auth')->group(function() {
         Route::post('assigned-semester-course/{semester_course}/update', [AdminControllers\SemesterController::class, 'assigned_cours_assign_update']);
         Route::delete('unassign-semester-course/{semester_course}', [AdminControllers\SemesterController::class, 'unassign_semester_course']);
 
-        
+        Route::get('semesters/{semester}/participants', [AdminControllers\SemesterParticipantController::class, 'index']);
+        Route::get('semesters/{semester}/participants/create', [AdminControllers\SemesterParticipantController::class, 'create']);
+        Route::post('semesters/{semester}/participants/store', [AdminControllers\SemesterParticipantController::class, 'store']);
+        Route::get('semesters/{semester}/participants/{student_id}/show', [AdminControllers\SemesterParticipantController::class, 'show']);
+        Route::get('semesters/{semester}/participants/{student_id}/edit', [AdminControllers\SemesterParticipantController::class, 'edit']);
+        Route::put('semesters/{semester}/participants/{student_id}/update', [AdminControllers\SemesterParticipantController::class, 'update']);
+        Route::delete('semesters/{semester}/participants/{student_id}/delete', [AdminControllers\SemesterParticipantController::class, 'destroy']);
         
         Route::get('my-account', [AdminControllers\ProfileController::class, 'my_account']);
         Route::get('my-account-edit', [AdminControllers\ProfileController::class, 'my_account_edit']);

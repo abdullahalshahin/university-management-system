@@ -19,7 +19,7 @@ class Semester extends Model {
         return $this->hasMany(SemesterCourse::class, 'semester_id', 'id');
     }
 
-    public function students() {
+    public function participated_students() {
         return $this->hasManyThrough(
             Student::class,
             SemesterCourseParticipant::class,
