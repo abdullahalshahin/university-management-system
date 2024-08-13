@@ -185,7 +185,7 @@
                         <li class="side-nav-title">Apps</li>
 
                         <li class="side-nav-item">
-                            <a href="{{ url('student-panel/dashboard') }}" class="side-nav-link">
+                            <a href="{{ url('student-panel/dashboard/registered-courses') }}" class="side-nav-link">
                                 <i class="uil-sitemap"></i>
                                 <span> Registered Courses </span>
                             </a>

@@ -13,4 +13,8 @@ class Student extends Authenticatable {
     public function department() {
         return $this->belongsTo(Department::class, 'department_id', 'id');
     }
+
+    public function semesterCourses() {
+        return $this->hasMany(SemesterCourseParticipant::class, 'student_id', 'id');
+    }
 }

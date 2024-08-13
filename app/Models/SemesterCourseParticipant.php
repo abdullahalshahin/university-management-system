@@ -10,4 +10,16 @@ class SemesterCourseParticipant extends Model {
     use HasFactory, SoftDeletes;
 
     protected $guarded = [];
+
+    public function course() {
+        return $this->belongsTo(Course::class, 'course_id', 'id');
+    }
+    
+    public function semester() {
+        return $this->belongsTo(Semester::class, 'semester_id', 'id');
+    }
+    
+    public function student() {
+        return $this->belongsTo(Student::class, 'student_id', 'id');
+    }
 }
