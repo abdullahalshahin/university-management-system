@@ -17,4 +17,15 @@ class Student extends Authenticatable {
     public function semesterCourses() {
         return $this->hasMany(SemesterCourseParticipant::class, 'student_id', 'id');
     }
+
+    public function registered_semesters() {
+        return $this->hasManyThrough(
+            Semester::class,
+            StudentRegisteredSemester::class,
+            'student_id',
+            'id',
+            'id',
+            'semester_id'
+        );
+    }
 }

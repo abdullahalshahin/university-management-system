@@ -73,6 +73,8 @@ Route::prefix('student-panel')->group(function() {
             Route::get('/', [StudentControllers\DashboardController::class, 'index']);
 
             Route::get('registered-courses', [StudentControllers\CourseRegistrationController::class, 'registered_courses']);
+            Route::get('new-registration', [StudentControllers\CourseRegistrationController::class, 'new_registration']);
+            Route::get('new-registration-store/{semester}', [StudentControllers\CourseRegistrationController::class, 'new_registration_store']);
 
             Route::get('my-account', [StudentControllers\ProfileController::class, 'my_account']);
             Route::get('my-account-edit', [StudentControllers\ProfileController::class, 'my_account_edit']);
