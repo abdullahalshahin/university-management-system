@@ -22,4 +22,8 @@ class SemesterCourseParticipant extends Model {
     public function student() {
         return $this->belongsTo(Student::class, 'student_id', 'id');
     }
+
+    public function semester_course() {
+        return $this->belongsTo(SemesterCourse::class, 'semester_course_id', 'id');
+    }
 }

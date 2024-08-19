@@ -45,6 +45,10 @@ Route::middleware('auth')->group(function() {
         Route::get('semesters/{semester}/participants/{student_id}/edit', [AdminControllers\SemesterParticipantController::class, 'edit']);
         Route::put('semesters/{semester}/participants/{student_id}/update', [AdminControllers\SemesterParticipantController::class, 'update']);
         Route::delete('semesters/{semester}/participants/{student_id}/delete', [AdminControllers\SemesterParticipantController::class, 'destroy']);
+
+        Route::get('classroom', [AdminControllers\ClassRoomController::class, 'index']);
+        Route::get('classroom/{semester_course}', [AdminControllers\ClassRoomController::class, 'show']);
+        Route::post('classroom/{semester_course}/make-class', [AdminControllers\ClassRoomController::class, 'make_class']);
         
         Route::get('my-account', [AdminControllers\ProfileController::class, 'my_account']);
         Route::get('my-account-edit', [AdminControllers\ProfileController::class, 'my_account_edit']);
@@ -75,6 +79,9 @@ Route::prefix('student-panel')->group(function() {
             Route::get('registered-courses', [StudentControllers\CourseRegistrationController::class, 'registered_courses']);
             Route::get('new-registration', [StudentControllers\CourseRegistrationController::class, 'new_registration']);
             Route::get('new-registration-store/{semester}', [StudentControllers\CourseRegistrationController::class, 'new_registration_store']);
+
+            Route::get('classroom', [StudentControllers\ClassRoomController::class, 'index']);
+            Route::get('classroom/{semester_course}', [StudentControllers\ClassRoomController::class, 'show']);
 
             Route::get('my-account', [StudentControllers\ProfileController::class, 'my_account']);
             Route::get('my-account-edit', [StudentControllers\ProfileController::class, 'my_account_edit']);

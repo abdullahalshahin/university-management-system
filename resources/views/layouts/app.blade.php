@@ -213,6 +213,13 @@
                         </li>
 
                         <li class="side-nav-item">
+                            <a href="{{ url('admin-panel/dashboard/classroom') }}" class="side-nav-link">
+                                <i class="uil-clipboard-alt"></i>
+                                <span> Classroom </span>
+                            </a>
+                        </li>
+
+                        <li class="side-nav-item">
                             <a href="{{ url('admin-panel/dashboard/students') }}" class="side-nav-link">
                                 <i class="uil-clipboard-alt"></i>
                                 <span> Student </span>

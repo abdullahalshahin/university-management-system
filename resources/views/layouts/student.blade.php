@@ -199,7 +199,7 @@
                         </li>
 
                         <li class="side-nav-item">
-                            <a href="{{ url('student-panel/dashboard') }}" class="side-nav-link">
+                            <a href="{{ url('student-panel/dashboard/classroom') }}" class="side-nav-link">
                                 <i class="uil-notes"></i>
                                 <span> Classroom </span>
                             </a>
