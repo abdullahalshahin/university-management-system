@@ -49,6 +49,16 @@ Route::middleware('auth')->group(function() {
         Route::get('classroom', [AdminControllers\ClassRoomController::class, 'index']);
         Route::get('classroom/{semester_course}', [AdminControllers\ClassRoomController::class, 'show']);
         Route::post('classroom/{semester_course}/make-class', [AdminControllers\ClassRoomController::class, 'make_class']);
+
+        Route::resource('questions', AdminControllers\QuestionController::class);
+        Route::resource('exam-papers', AdminControllers\ExamPaperController::class);
+
+        Route::get('exam-results', [AdminControllers\ResultController::class, 'index']);
+        Route::get('exam-results/{exam_paper}', [AdminControllers\ResultController::class, 'show']);
+        Route::get('exam-results/{exam_paper}/exam-participants/{exam_participant}', [AdminControllers\ResultController::class, 'show_exam_participant']);
+        
+        Route::get('exam-results/{exam_paper}/answer-papers/{exam_participant}', [AdminControllers\AnswerPaperController::class, 'show_answer_paper']);
+        Route::post('exam-results/{exam_paper}/answer-papers/{exam_participant}/result-submit', [AdminControllers\AnswerPaperController::class, 'result_submit']);
         
         Route::get('my-account', [AdminControllers\ProfileController::class, 'my_account']);
         Route::get('my-account-edit', [AdminControllers\ProfileController::class, 'my_account_edit']);
@@ -82,6 +92,11 @@ Route::prefix('student-panel')->group(function() {
 
             Route::get('classroom', [StudentControllers\ClassRoomController::class, 'index']);
             Route::get('classroom/{semester_course}', [StudentControllers\ClassRoomController::class, 'show']);
+
+            Route::get('exams', [StudentControllers\ExamController::class, 'index']);
+            Route::get('exams/{exam}', [StudentControllers\ExamController::class, 'create']);
+            Route::post('exams/{exam}', [StudentControllers\ExamController::class, 'store']);
+            Route::get('exams/{exam}/result', [StudentControllers\ExamController::class, 'show_result']);
 
             Route::get('my-account', [StudentControllers\ProfileController::class, 'my_account']);
             Route::get('my-account-edit', [StudentControllers\ProfileController::class, 'my_account_edit']);

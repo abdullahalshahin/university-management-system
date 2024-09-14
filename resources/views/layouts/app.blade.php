@@ -226,6 +226,30 @@
                             </a>
                         </li>
 
+                        <li class="side-nav-item">
+                            <a data-bs-toggle="collapse" href="#ExamSystem" aria-expanded="false" aria-controls="ExamSystem" class="side-nav-link">
+                                <i class="uil-clipboard-alt"></i>
+                                <span> Exam System </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            
+                            <div class="collapse" id="ExamSystem">
+                                <ul class="side-nav-second-level">
+                                    <li>
+                                        <a href="{{ url('admin-panel/dashboard/questions') }}"> Question </a>
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="{{ url('admin-panel/dashboard/exam-papers') }}"> Exam Paper </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="{{ url('admin-panel/dashboard/exam-results') }}"> Exam Result </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
                         @canany(['recycle_bin_student_view', 'recycle_bin_user_view'])
                             <li class="side-nav-item">
                                 <a data-bs-toggle="collapse" href="#RecycleBin" aria-expanded="false" aria-controls="RecycleBin" class="side-nav-link">
