@@ -32,6 +32,7 @@ Route::middleware('auth')->group(function() {
         Route::resource('roles', AdminControllers\RoleController::class);
         Route::resource('students', AdminControllers\StudentController::class);
         Route::resource('users', AdminControllers\UserController::class);
+        Route::resource('notices', AdminControllers\NoticeController::class);
 
         Route::post('semester-course-assign/{semester}', [AdminControllers\SemesterController::class, 'semester_cours_assign']);
         Route::get('assigned-semester-course/{semester_course}/edit', [AdminControllers\SemesterController::class, 'assigned_cours_assign']);
@@ -92,6 +93,9 @@ Route::prefix('student-panel')->group(function() {
 
             Route::get('classroom', [StudentControllers\ClassRoomController::class, 'index']);
             Route::get('classroom/{semester_course}', [StudentControllers\ClassRoomController::class, 'show']);
+
+            Route::get('notices', [StudentControllers\ClassRoomController::class, 'notices_list']);
+            Route::get('notices/{notice}', [StudentControllers\ClassRoomController::class, 'notices_show']);
 
             Route::get('exams', [StudentControllers\ExamController::class, 'index']);
             Route::get('exams/{exam}', [StudentControllers\ExamController::class, 'create']);

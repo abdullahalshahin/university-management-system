@@ -250,6 +250,13 @@
                             </div>
                         </li>
 
+                        <li class="side-nav-item">
+                            <a href="{{ url('admin-panel/dashboard/notices') }}" class="side-nav-link">
+                                <i class="uil-clipboard-alt"></i>
+                                <span> Notice </span>
+                            </a>
+                        </li>
+
                         @canany(['recycle_bin_student_view', 'recycle_bin_user_view'])
                             <li class="side-nav-item">
                                 <a data-bs-toggle="collapse" href="#RecycleBin" aria-expanded="false" aria-controls="RecycleBin" class="side-nav-link">

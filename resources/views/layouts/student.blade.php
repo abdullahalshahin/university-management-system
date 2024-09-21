@@ -191,12 +191,12 @@
                             </a>
                         </li>
 
-                        <li class="side-nav-item">
+                        {{-- <li class="side-nav-item">
                             <a href="{{ url('student-panel/dashboard') }}" class="side-nav-link">
                                 <i class="uil-chart-pie-alt"></i>
                                 <span> Check Due & Payments </span>
                             </a>
-                        </li>
+                        </li> --}}
 
                         <li class="side-nav-item">
                             <a href="{{ url('student-panel/dashboard/classroom') }}" class="side-nav-link">
@@ -206,13 +206,13 @@
                         </li>
 
                         <li class="side-nav-item">
-                            <a href="{{ url('student-panel/dashboard') }}" class="side-nav-link">
+                            <a href="{{ url('student-panel/dashboard/exams') }}" class="side-nav-link">
                                 <i class="uil-file-edit-alt"></i>
                                 <span> Exam & Results </span>
                             </a>
                         </li>
 
-                        <li class="side-nav-item">
+                        {{-- <li class="side-nav-item">
                             <a href="{{ url('student-panel/dashboard') }}" class="side-nav-link">
                                 <i class="uil-book-alt"></i>
                                 <span> E-Books </span>
@@ -223,6 +223,13 @@
                             <a href="{{ url('student-panel/dashboard') }}" class="side-nav-link">
                                 <i class="uil-envelope-check"></i>
                                 <span> Support Ticket </span>
+                            </a>
+                        </li> --}}
+
+                        <li class="side-nav-item">
+                            <a href="{{ url('student-panel/dashboard/notices') }}" class="side-nav-link">
+                                <i class="uil-notes"></i>
+                                <span> Notice </span>
                             </a>
                         </li>
 

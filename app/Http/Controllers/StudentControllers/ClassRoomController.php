@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\StudentControllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Notice;
 use App\Models\SemesterCourse;
 use App\Models\SemesterCourseParticipant;
 use Illuminate\Http\Request;
@@ -27,5 +28,17 @@ class ClassRoomController extends Controller
 
     public function show(SemesterCourse $semester_course) {
         return view('student_panel.classroom.show', compact('semester_course'));
+    }
+
+    public function notices_list() {
+        $notices  = Notice::query()
+            ->latest()
+            ->get();
+            
+        return view('student_panel.classroom.notices_list', compact('notices'));
+    }
+
+    public function notices_show(Notice $notice) {
+        return view('student_panel.classroom.notices_show', compact('notice'));
     }
 }
