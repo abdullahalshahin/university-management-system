@@ -31,7 +31,7 @@ class ClassRoomController extends Controller
     }
 
     public function notices_list() {
-        $notices  = Notice::query()
+        $notices = Notice::query()
             ->latest()
             ->get();
             

@@ -29,7 +29,7 @@
                 <div class="card d-block">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center mb-2">
-                            <h3 class="mt-0">{{ $notice->name ?? "" }}</h3>
+                            <h3 class="mt-0">{{ $notice->name ?? "" }} <span><i>{{ ($notice->created_at) ? $notice->created_at->diffForHumans() : "" }}</i></span></h3>
                         </div>
 
                         <h5>Details:</h5>

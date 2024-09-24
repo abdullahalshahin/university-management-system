@@ -38,7 +38,7 @@
                                     </div>
                                 </div>
                                 <div class="flex-grow-1 ms-3">
-                                    <a href="{{ url('student-panel/dashboard/notices', $notice->id) }}" class="font-16 fw-bold text-secondary">{{ $notice->name ?? "" }}</a>
+                                    <a href="{{ url('student-panel/dashboard/notices', $notice->id) }}" class="font-16 fw-bold text-secondary">{{ $notice->name ?? "" }} <span><i>{{ ($notice->created_at) ? $notice->created_at->diffForHumans() : "" }}</i></span></a>
                                 </div>
                             </div>
                         </div>

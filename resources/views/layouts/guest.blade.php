@@ -76,39 +76,15 @@
                                 <div class="it-header-2-main-menu">
                                     <nav class="it-menu-content">
                                         <ul>
-                                            <li class="has-dropdown p-static"><a href="index.html">home</a>
-                                                <div class="it-submenu submenu has-home-img">
-                                                    <div class="row gx-6 row-cols-1 row-cols-md-2 row-cols-lg-2 row-cols-xl-5">
-                                                        <div class="col home-img">
-                                                            <div class="home-img-content text-center">
-                                                                <h4 class="home-img-title"><a href="index.html">Home 01</a></h4>
-                                                            </div>
-                                                        </div>
-                                                        
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li><a href="about-us.html">about us</a></li>
-                                            <li class="has-dropdown"><a href="services-1.html">services</a>
+                                            <li><a href="{{ url('/') }}">Home</a></li>
+                                            <li class="has-dropdown"><a href="#">Faculty Members</a>
                                                 <ul class="it-submenu submenu">
-                                                    <li><a href="services-1.html">services 01</a></li>
-                                                    <li><a href="services-2.html">services 02</a></li>
-                                                    <li><a href="services-3.html">services 03</a></li>
+                                                    @foreach ($departments as $department)
+                                                        <li><a href="{{ url('department/' . $department->id . '/teachers') }}">{{ $department->name ?? "" }}</a></li>
+                                                    @endforeach
                                                 </ul>
                                             </li>
-                                            <li class="has-dropdown"><a href="#">pages</a>
-                                                <ul class="it-submenu submenu has-megamenu">
-                                                    <li><a href="pages-1.html">pages 01</a></li>
-                                                    <li><a href="pages-2.html">pages 02</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="has-dropdown"><a href="blog-1.html">blog</a>
-                                                <ul class="it-submenu submenu">
-                                                    <li><a href="blog-1.html">Blog 01</a></li>
-                                                    <li><a href="blog-2.html">BLog 02</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="contact.html">contact</a></li>
+                                            <li><a href="{{ url('contact-us') }}">Contact Us</a></li>
                                         </ul>
                                     </nav>
                                 </div>

@@ -19,6 +19,7 @@ Route::get('/', [PublicPageController::class, 'index']);
 Route::get('/faqs', [PublicPageController::class, 'faqs']);
 Route::get('/about-us', [PublicPageController::class, 'about_us']);
 Route::get('/contact-us', [PublicPageController::class, 'contact_us']);
+Route::get('/department/{department_id}/teachers', [PublicPageController::class, 'faculty_members']);
 
 // ----------------------- ADMIN panel route section ----------------------- //
 Route::middleware('auth')->group(function() {
