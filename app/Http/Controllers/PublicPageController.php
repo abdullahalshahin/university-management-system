@@ -26,6 +26,7 @@ class PublicPageController extends Controller
     public function faculty_members($department_id) {
         $faculty_members = User::query()
             ->where('department_id', $department_id)
+            ->where('status', "active")
             ->get();
 
         return view('faculty_members', compact('faculty_members'));
